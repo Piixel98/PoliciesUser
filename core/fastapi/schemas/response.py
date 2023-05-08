@@ -13,16 +13,12 @@ class ResponseModel(BaseModel):
 
 
 class HTTPResponseModel(ResponseModel):
-    detail: ResponseModel
-
     class Config:
         schema_extra = {
             "example": {
-                "detail": {
-                    "code": "{http.HTTPStatus}",
-                    "error_code": "1000",
-                    "message": "{Union[str,list[str]]}"
-                }
+                "code": "{http.HTTPStatus}",
+                "error_code": "{int}",
+                "message": "{Union[str,list[str]]}"
             }
         }
 
