@@ -6,6 +6,7 @@ from starlette.status import HTTP_200_OK
 
 from api.policy.v1.response import GetPolicyResponse
 from app.policy.service import PolicyQueryService
+from core.fastapi.dependencies import IsAdmin, PermissionDependency, IsUser
 from core.fastapi.schemas import ExceptionResponseSchema
 
 policy_router = APIRouter()
@@ -19,6 +20,7 @@ def newService():
                    description="Get policies by policy id",
                    response_model=GetPolicyResponse,
                    responses=ExceptionResponseSchema,
+                   dependencies=[Depends(PermissionDependency([IsUser]))],
                    status_code=HTTP_200_OK)
 async def get_policy_by_id(policy_id: UUID = Path(),
                            policyService: PolicyQueryService = Depends(newService)):
@@ -29,6 +31,7 @@ async def get_policy_by_id(policy_id: UUID = Path(),
                    description="Get policies by user id",
                    response_model=list[GetPolicyResponse],
                    responses=ExceptionResponseSchema,
+                   dependencies=[Depends(PermissionDependency([IsAdmin]))],
                    status_code=HTTP_200_OK)
 async def get_policies_by_user_id(user_id: UUID = Path(),
                                   policyService: PolicyQueryService = Depends(newService)):

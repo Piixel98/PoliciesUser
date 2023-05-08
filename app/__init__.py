@@ -6,6 +6,10 @@ from starlette.status import HTTP_303_SEE_OTHER
 
 from core.config import config
 from core.exceptions import CustomException
+from core.fastapi.middlewares import (
+    AuthenticationMiddleware,
+    AuthBackend,
+)
 from core.fastapi.dependencies import Logging
 from api import router
 
@@ -48,7 +52,11 @@ def on_auth_error(request: Request, exc: Exception):
 
 
 def init_middleware(app: FastAPI) -> None:
-    pass
+    app.add_middleware(
+        AuthenticationMiddleware,
+        backend=AuthBackend(),
+        on_error=on_auth_error,
+    )
 
 
 def addRedirectMainPage(app: FastAPI) -> None:
