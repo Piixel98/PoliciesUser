@@ -8,7 +8,7 @@ allowing the business logic to communicate with the repository instead of intera
 The project has been implemented in Python using the [FastAPI Framework](https://fastapi.tiangolo.com/) to demonstrate
 its excellent performance results, competing directly with Django or Flask, allowing easy management of asynchronous requests.
 
-The application has been modeled using [Starlette](https://www.starlette.io/) models.
+The application has been modeled using [Pydantic](https://docs.pydantic.dev/latest/) models.
 The data models have not been added because in this project database models are not used. 
 However, it's recommended to use an Object-Relational Mapping (ORM) to abstract the database from the application logic.
 
