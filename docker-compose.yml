@@ -1,0 +1,22 @@
+version: '3.7'
+networks:
+  backend-network:
+    driver: 'bridge'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/api/Dockerfile
+    container_name: api
+    command: gunicorn app:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --forwarded-allow-ips="*" --keep-alive 30 --timeout 600 --bind 0.0.0.0:8000
+    hostname: api
+    ports:
+      - '8000:8000'
+    healthcheck:
+      test: [ "CMD", "nc", "-z","localhost", "8000" ]
+    networks:
+      - backend-network
+    tty: true
+    volumes:
+      - $PWD:/home
