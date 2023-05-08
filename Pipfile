@@ -8,6 +8,7 @@ uvicorn = "*"
 fastapi = "*"
 pydantic = {extras = ["email"], version = "*"}
 httpx = "*"
+pyjwt = "*"
 
 [dev-packages]
 
