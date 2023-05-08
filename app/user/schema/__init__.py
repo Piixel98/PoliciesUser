@@ -1,4 +1,4 @@
-from .userschema import Role, UserSchema
+from .user import Role, UserSchema
 
 
 __all__ = [
