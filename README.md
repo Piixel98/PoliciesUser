@@ -46,10 +46,7 @@ Run docker-compose:
 
 Run project manually:
 
-`pipenv run && pipenv install`
-
-`python main.py`
-
+`pipenv install && pipenv run python main.py`
 
 Due to lack of time, I was unable to generate the corresponding tests for the project. However, I created a "tests" 
 folder for their future implementation.
