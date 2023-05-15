@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from typing import List
 
 from fastapi import Request
 from fastapi.openapi.models import APIKey, APIKeyIn
@@ -10,7 +9,7 @@ from core.exceptions import CustomException, UnauthorizedException
 
 
 class PermissionDependency(SecurityBase):
-    def __init__(self, permissions: List):
+    def __init__(self, permissions: list):
         self.permissions = permissions
         self.model: APIKey = APIKey(**{"in": APIKeyIn.header}, name="Authorization")
         self.scheme_name = self.__class__.__name__
