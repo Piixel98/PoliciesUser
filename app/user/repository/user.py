@@ -1,7 +1,6 @@
-from abc import ABCMeta, abstractmethod, ABC
+from abc import ABCMeta, abstractmethod
 from http import HTTPStatus
 
-from uuid import UUID
 import httpx
 
 from app.user.exception import UserNotFoundException

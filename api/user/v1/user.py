@@ -6,7 +6,7 @@ from fastapi import APIRouter, Query, Path, Depends
 from starlette.status import HTTP_200_OK
 
 from core.fastapi.dependencies import PermissionDependency, IsAdmin, IsUser
-from core.fastapi.schemas.response import ExceptionResponseSchema
+from core.fastapi.schemas import ExceptionResponseSchema
 
 user_router = APIRouter()
 

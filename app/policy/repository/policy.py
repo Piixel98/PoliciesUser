@@ -4,7 +4,7 @@ from http import HTTPStatus
 import httpx
 
 from app.policy.exception import PolicyNotFoundException
-from app.policy.schema.policy import PolicySchema
+from app.policy.schema import PolicySchema
 from core.config import config
 
 
