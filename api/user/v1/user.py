@@ -17,13 +17,13 @@ def newService():
 
 @user_router.get("",
                  description="Get users by criteria",
-                 response_model=GetUserResponse,
+                 response_model=list[GetUserResponse],
                  responses=ExceptionResponseSchema,
                  dependencies=[Depends(PermissionDependency([IsUser]))],
                  status_code=HTTP_200_OK)
-async def get_user_by_name(name: str = Query(),
-                           userService: UserQueryService = Depends(newService)):
-    return await userService.get_user_by_name(name=name)
+async def get_users(name: str = Query(default=None),
+                    userService: UserQueryService = Depends(newService)):
+    return await userService.get_users(name)
 
 
 @user_router.get("/{user_id}",

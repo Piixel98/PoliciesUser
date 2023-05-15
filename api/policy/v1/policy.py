@@ -16,6 +16,16 @@ def newService():
     return PolicyQueryService()
 
 
+@policy_router.get("",
+                   description="Get policies",
+                   response_model=list[GetPolicyResponse],
+                   responses=ExceptionResponseSchema,
+                   dependencies=[Depends(PermissionDependency([IsUser]))],
+                   status_code=HTTP_200_OK)
+async def get_policies(policyService: PolicyQueryService = Depends(newService)):
+    return await policyService.get_policies()
+
+
 @policy_router.get("/{policy_id}",
                    description="Get policies by policy id",
                    response_model=GetPolicyResponse,
@@ -35,4 +45,4 @@ async def get_policy_by_id(policy_id: UUID = Path(),
                    status_code=HTTP_200_OK)
 async def get_policies_by_user_id(user_id: UUID = Path(),
                                   policyService: PolicyQueryService = Depends(newService)):
-    return await policyService.get_policies_by_user_id(user_id=user_id)
+    return await policyService.get_policies(user_id=user_id)
