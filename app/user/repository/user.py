@@ -1,4 +1,4 @@
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta, abstractmethod, ABC
 from http import HTTPStatus
 
 from uuid import UUID
@@ -14,10 +14,6 @@ class UserRepository:
 
     @abstractmethod
     async def get_users(self, **kwargs) -> list[UserSchema]:
-        pass
-
-    @abstractmethod
-    async def get_by_policy_id(self, policy_id: UUID) -> UserSchema:
         pass
 
 
