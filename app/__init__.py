@@ -17,10 +17,10 @@ from api import router
 def init_cors(app: FastAPI) -> None:
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
+        allow_origins=config.CORS_ORIGINS,
+        allow_credentials=config.CORS_ALLOW_CREDENTIALS,
+        allow_methods=config.CORS_METHODS,
+        allow_headers=config.CORS_HEADERS,
     )
 
 
@@ -59,7 +59,7 @@ def init_middleware(app: FastAPI) -> None:
     )
 
 
-def addRedirectMainPage(app: FastAPI) -> None:
+def add_redirect_main_page(app: FastAPI) -> None:
     @app.get("/", include_in_schema=False)
     async def root():
         return RedirectResponse(url=f"/docs/", status_code=HTTP_303_SEE_OTHER)
@@ -77,7 +77,7 @@ def create_app() -> FastAPI:
     init_cors(app=app)
     init_listeners(app=app)
     init_middleware(app=app)
-    addRedirectMainPage(app=app)
+    add_redirect_main_page(app=app)
     return app
 
 
